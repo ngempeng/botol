@@ -97,50 +97,50 @@ clear
 clear
 #########################
 # USERNAME
-rm -f /usr/bin/user
-username=$(curl -sS https://raw.githubusercontent.com/ngempeng/botol/master/khusus | grep $MYIP | awk '{print $2}')
-echo "$username" >/usr/bin/user
+#rm -f /usr/bin/user
+#username=$(curl -sS https://raw.githubusercontent.com/ngempeng/botol/master/khusus | grep $MYIP | awk '{print $2}')
+#echo "$username" >/usr/bin/user
 # validity
-rm -f /usr/bin/e
-today=`date -d "0 days" +"%Y-%m-%d"`
-valid=$(curl -sS https://raw.githubusercontent.com/ngempeng/botol/master/khusus | grep $MYIP | awk '{print $3}')
-echo "$valid" >/usr/bin/e
+#rm -f /usr/bin/e
+#today=`date -d "0 days" +"%Y-%m-%d"`
+#valid=$(curl -sS https://raw.githubusercontent.com/ngempeng/botol/master/khusus | grep $MYIP | awk '{print $3}')
+#echo "$valid" >/usr/bin/e
 # DETAIL ORDER
-username=$(cat /usr/bin/user)
-oid=$(cat /usr/bin/ver)
-exp=$(cat /usr/bin/e)
-clear
+#username=$(cat /usr/bin/user)
+#oid=$(cat /usr/bin/ver)
+#exp=$(cat /usr/bin/e)
+#clear
 # CERTIFICATE STATUS
-d1=$(date -d "$valid" +%s)
-d2=$(date -d "$today" +%s)
-certifacate=$(((d1 - d2) / 86400))
+#d1=$(date -d "$valid" +%s)
+#d2=$(date -d "$today" +%s)
+#certifacate=$(((d1 - d2) / 86400))
 # VPS Information
-DATE=$(date +'%Y-%m-%d')
-datediff() {
-    d1=$(date -d "$1" +%s)
-    d2=$(date -d "$2" +%s)
-    echo -e "$COLOR1 $NC Expiry In   : $(( (d1 - d2) / 86400 )) Days"
-}
-mai="datediff "$Exp" "$DATE""
-
+#DATE=$(date +'%Y-%m-%d')
+#datediff() {
+#    d1=$(date -d "$1" +%s)
+#    d2=$(date -d "$2" +%s)
+#    echo -e "$COLOR1 $NC Expiry In   : $(( (d1 - d2) / 86400 )) Days"
+#}
+#mai="datediff "$Exp" "$DATE""
+#
 # Status ExpiRED Active | Geo Project
-Info="${GREEN}Active${NC}"
-Error="${RED}Expired${NC}"
-if [[ "$certifacate" -le "0" ]]; then
-sts="${Error}"
-echo -e " $BLUE╭──────────────────────────────────────────────────────────╮${NC}"
-echo -e " $BLUE│$NC$RED    IP address not authorized by admin $NC"
-echo -e " $BLUE│$NC$RED    Please contact admin to rent this script $NC"
-echo -e " $BLUE│$NC$r • $NC$WHITE Whatsapp :$NC $GREEN https://wa.me/6285649455626$NC"
-echo -e " $BLUE│$NC$r • $NC$WHITE Telegram :$NC $GREEN https://t.me/erfanrinanda$NC"
-echo -e " $BLUE╰──────────────────────────────────────────────────────────╯${NC}"
-sleep 3
-exit 1
-else
-sts="${Info}"
-fi
-echo -e "\e[32mloading...\e[0m"
-clear
+#Info="${GREEN}Active${NC}"
+#Error="${RED}Expired${NC}"
+#if [[ "$certifacate" -le "0" ]]; then
+#sts="${Error}"
+#echo -e " $BLUE╭──────────────────────────────────────────────────────────╮${NC}"
+#echo -e " $BLUE│$NC$RED    IP address not authorized by admin $NC"
+#echo -e " $BLUE│$NC$RED    Please contact admin to rent this script $NC"
+#echo -e " $BLUE│$NC$r • $NC$WHITE Whatsapp :$NC $GREEN https://wa.me/6285649455626$NC"
+#echo -e " $BLUE│$NC$r • $NC$WHITE Telegram :$NC $GREEN https://t.me/erfanrinanda$NC"
+#echo -e " $BLUE╰──────────────────────────────────────────────────────────╯${NC}"
+#sleep 3
+#exit 1
+#else
+#sts="${Info}"
+#fi
+#echo -e "\e[32mloading...\e[0m"
+#clear
 # REPO    
     REPO="https://raw.githubusercontent.com/erfanrinanda/private/master/"
 
