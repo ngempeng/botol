@@ -1,5 +1,5 @@
 #!/bin/bash
-# Edition : Stable Edition V3.0
+# Edition : Stable Edition V15.7.1.
 # Auther  : Geo Project
 # (C) Copyright 2023
 # =========================================
