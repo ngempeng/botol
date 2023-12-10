@@ -142,7 +142,7 @@ clear
 #echo -e "\e[32mloading...\e[0m"
 #clear
 # REPO    
-    REPO="https://raw.githubusercontent.com/erfanrinanda/private/master/"
+    REPO="https://raw.githubusercontent.com/ngempeng/botol/master/"
 
 ####
 start=$(date +%s)
