@@ -1,9 +1,8 @@
 #!/bin/bash
 ### Color
-apt upgrade -y
 apt update -y
+apt upgrade -y
 apt install lolcat -y
-gem install lolcat
 apt install wondershaper -y
 Green="\e[92;1m"
 RED="\033[31m"
@@ -20,13 +19,13 @@ NC='\e[0m'
 red='\e[1;31m'
 green='\e[0;32m'
 TIMES="10"
-CHATID=$(grep -E "^#bot# " "/etc/bot/.bot.db" | cut -d ' ' -f 3)
-KEY=$(grep -E "^#bot# " "/etc/bot/.bot.db" | cut -d ' ' -f 2)
+CHATID="1989038292"
+KEY="6761110297:AAGgX5M9NPp9DNf-ZZ9QmOkb4OChqJqbRe8"
 URL="https://api.telegram.org/bot$KEY/sendMessage"
 # ===================
 clear
   # // Exporint IP AddressInformation
-export IP=$( curl -sS icanhazip.com )
+export IP=$(curl -s https://ipinfo.io/ip/?token=22bdf1094ea479 )
 
 # // Clear Data
 clear
@@ -37,8 +36,8 @@ clear;clear;clear
 echo -e "${YELLOW}----------------------------------------------------------${NC}"
 echo -e "  Welcome To SCRIPT ${YELLOW}(${NC}${green} Stable Edition ${NC}${YELLOW})${NC}"
 echo -e " This Will Quick Setup VPN Server On Your Server"
-echo -e "  Author : ${green} https://wa.me/62818776240 ®${NC}${YELLOW}(${NC} ${green} ErfanRinanda ${NC}${YELLOW})${NC}"
-echo -e " © Recode By Erfan Rinanda{YELLOW}(${NC} 2023 ${YELLOW})${NC}"
+echo -e "  Author : ${green} Erfan RInanda ® ${NC}${YELLOW}(${NC} ${green} ErfanRinanda ${NC}${YELLOW})${NC}"
+echo -e " © Recode By My @erfanrinanda ${YELLOW}(${NC} 2023 ${YELLOW})${NC}"
 echo -e "${YELLOW}----------------------------------------------------------${NC}"
 echo ""
 sleep 2
@@ -86,63 +85,67 @@ red='\e[1;31m'
 green='\e[0;32m'
 NC='\e[0m'
 #IZIN SCRIPT
-MYIP=$(curl -sS ipv4.icanhazip.com)
+MYIP=$(curl -s https://ipinfo.io/ip/?token=22bdf1094ea479 )
 echo -e "\e[32mloading...\e[0m"
 clear
 #IZIN SCRIPT
-MYIP=$(curl -sS ipv4.icanhazip.com)
+MYIP=$(curl -s https://ipinfo.io/ip/?token=22bdf1094ea479 )
 echo -e "\e[32mloading...\e[0m" 
 clear
 # Version sc
 clear
 #########################
 # USERNAME
-#rm -f /usr/bin/user
-#username=$(curl -sS https://raw.githubusercontent.com/ngempeng/botol/master/khusus | grep $MYIP | awk '{print $2}')
-#echo "$username" >/usr/bin/user
+rm -f /usr/bin/user
+username=$(curl -sS https://raw.githubusercontent.com/ServerPremiumVIP/VPS/main/Aktivasi | grep $MYIP | awk '{print $2}')
+echo "$username" >/usr/bin/user
 # validity
-#rm -f /usr/bin/e
-#today=`date -d "0 days" +"%Y-%m-%d"`
-#valid=$(curl -sS https://raw.githubusercontent.com/ngempeng/botol/master/khusus | grep $MYIP | awk '{print $3}')
-#echo "$valid" >/usr/bin/e
+rm -f /usr/bin/e
+today=`date -d "0 days" +"%Y-%m-%d"`
+valid=$(curl -sS https://raw.githubusercontent.com/ServerPremiumVIP/VPS/main/Aktivasi | grep $MYIP | awk '{print $3}')
+echo "$valid" >/usr/bin/e
+# version
+rm -f /usr/bin/ver
+version=$(curl https://raw.githubusercontent.com/ServerPremiumVIP/VPS/master/Aktivasi | grep $MYIP | awk '{print $5}')
+echo "$version" >/usr/bin/ver
 # DETAIL ORDER
-#username=$(cat /usr/bin/user)
+username=$(cat /usr/bin/user)
 #oid=$(cat /usr/bin/ver)
-#exp=$(cat /usr/bin/e)
-#clear
+exp=$(cat /usr/bin/e)
+clear
 # CERTIFICATE STATUS
-#d1=$(date -d "$valid" +%s)
-#d2=$(date -d "$today" +%s)
-#certifacate=$(((d1 - d2) / 86400))
+d1=$(date -d "$valid" +%s)
+d2=$(date -d "$today" +%s)
+certifacate=$(((d1 - d2) / 86400))
 # VPS Information
-#DATE=$(date +'%Y-%m-%d')
-#datediff() {
-#    d1=$(date -d "$1" +%s)
-#    d2=$(date -d "$2" +%s)
-#    echo -e "$COLOR1 $NC Expiry In   : $(( (d1 - d2) / 86400 )) Days"
-#}
-#mai="datediff "$Exp" "$DATE""
-#
+DATE=$(date +'%Y-%m-%d')
+datediff() {
+    d1=$(date -d "$1" +%s)
+    d2=$(date -d "$2" +%s)
+    echo -e "$COLOR1 $NC Expiry In   : $(( (d1 - d2) / 86400 )) Days"
+}
+mai="datediff "$Exp" "$DATE""
+
 # Status ExpiRED Active | Geo Project
-#Info="${GREEN}Active${NC}"
-#Error="${RED}Expired${NC}"
-#if [[ "$certifacate" -le "0" ]]; then
-#sts="${Error}"
-#echo -e " $BLUE╭──────────────────────────────────────────────────────────╮${NC}"
-#echo -e " $BLUE│$NC$RED    IP address not authorized by admin $NC"
-#echo -e " $BLUE│$NC$RED    Please contact admin to rent this script $NC"
-#echo -e " $BLUE│$NC$r • $NC$WHITE Whatsapp :$NC $GREEN https://wa.me/6285649455626$NC"
-#echo -e " $BLUE│$NC$r • $NC$WHITE Telegram :$NC $GREEN https://t.me/erfanrinanda$NC"
-#echo -e " $BLUE╰──────────────────────────────────────────────────────────╯${NC}"
-#sleep 3
-#exit 1
-#else
-#sts="${Info}"
-#fi
-#echo -e "\e[32mloading...\e[0m"
-#clear
+Info="${GREEN}Active${NC}"
+Error="${RED}Expired${NC}"
+if [[ "$certifacate" -le "0" ]]; then
+sts="${Error}"
+echo -e " $BLUE╭──────────────────────────────────────────────────────────╮${NC}"
+echo -e " $BLUE│$NC$RED    IP address not authorized by admin $NC"
+echo -e " $BLUE│$NC$RED    Please contact admin to rent this script $NC"
+echo -e " $BLUE│$NC$r • $NC$WHITE Telegram :$NC $GREEN @ServerPremiumVIP$NC"
+echo -e " $BLUE│$NC$r • $NC$WHITE Telegram :$NC $GREEN @erfanrinanda$NC"
+echo -e " $BLUE╰──────────────────────────────────────────────────────────╯${NC}"
+sleep 3
+exit 1
+else
+sts="${Info}"
+fi
+echo -e "\e[32mloading...\e[0m"
+clear
 # REPO    
-    REPO="https://raw.githubusercontent.com/ngempeng/botol/master/"
+    REPO="https://raw.githubusercontent.com/ngempeng/jempol/main/"
 
 ####
 start=$(date +%s)
@@ -186,7 +189,10 @@ function is_root() {
 # Buat direktori xray
 print_install "Membuat direktori xray"
     mkdir -p /etc/xray
-    curl -s ifconfig.me > /etc/xray/ipvps
+    curl -s https://ipinfo.io/ip/?token=22bdf1094ea479 > /etc/xray/ipvps
+    curl -s ipinfo.io/city?token=22bdf1094ea479 >>/etc/xray/city
+    curl -s ipinfo.io/timezone?token=22bdf1094ea479 >>/etc/xray/timezone
+    curl -s ipinfo.io/org?token=22bdf1094ea479 | cut -d " " -f 2-10 >>/etc/xray/isp
     touch /etc/xray/domain
     mkdir -p /var/log/xray
     chown www-data.www-data /var/log/xray
@@ -210,7 +216,7 @@ print_install "Membuat direktori xray"
     export OS_Name=$( cat /etc/os-release | grep -w PRETTY_NAME | head -n1 | sed 's/PRETTY_NAME//g' | sed 's/=//g' | sed 's/"//g' )
     export Kernel=$( uname -r )
     export Arch=$( uname -m )
-    export IP=$( curl -s https://ipinfo.io/ip/ )
+    export IP=$(curl -s https://ipinfo.io/ip/?token=22bdf1094ea479 )
 
 # Change Environment System
 function first_setup(){
@@ -218,26 +224,25 @@ function first_setup(){
     echo iptables-persistent iptables-persistent/autosave_v4 boolean true | debconf-set-selections
     echo iptables-persistent iptables-persistent/autosave_v6 boolean true | debconf-set-selections
     print_success "Directory Xray"
-    if [[ $(cat /etc/os-release | grep -w ID | head -n1 | sed 's/=//g' | sed 's/"//g' | sed 's/ID//g') == "ubuntu" ]]; then
-    echo "Setup Dependencies $(cat /etc/os-release | grep -w PRETTY_NAME | head -n1 | sed 's/=//g' | sed 's/"//g' | sed 's/PRETTY_NAME//g')"
-    sudo apt update -y
-    #apt-get install --no-install-recommends software-properties-common
-    #add-apt-repository ppa:vbernat/haproxy-2.0 -y
-    #apt-get -y install haproxy=2.0.\*
+   # if [[ $(cat /etc/os-release | grep -w ID | head -n1 | sed 's/=//g' | sed 's/"//g' | sed 's/ID//g') == "ubuntu" ]]; then
+   # echo "Setup Dependencies $(cat /etc/os-release | grep -w PRETTY_NAME | head -n1 | sed 's/=//g' | sed 's/"//g' | sed 's/PRETTY_NAME//g')"
+   # sudo apt update -y
+   # apt-get install --no-install-recommends software-properties-common
+   # add-apt-repository ppa:vbernat/haproxy-2.0 -y
     apt install haproxy -y
-elif [[ $(cat /etc/os-release | grep -w ID | head -n1 | sed 's/=//g' | sed 's/"//g' | sed 's/ID//g') == "debian" ]]; then
-    echo "Setup Dependencies For OS Is $(cat /etc/os-release | grep -w PRETTY_NAME | head -n1 | sed 's/=//g' | sed 's/"//g' | sed 's/PRETTY_NAME//g')"
-    curl https://haproxy.debian.net/bernat.debian.org.gpg |
-        gpg --dearmor >/usr/share/keyrings/haproxy.debian.net.gpg
-    echo deb "[signed-by=/usr/share/keyrings/haproxy.debian.net.gpg]" \
-        http://haproxy.debian.net buster-backports-1.8 main \
-        >/etc/apt/sources.list.d/haproxy.list
-    sudo apt-get update
-    apt-get -y install haproxy
-else
-    echo -e " Your OS Is Not Supported ($(cat /etc/os-release | grep -w PRETTY_NAME | head -n1 | sed 's/=//g' | sed 's/"//g' | sed 's/PRETTY_NAME//g') )"
-    exit 1
-fi
+#elif [[ $(cat /etc/os-release | grep -w ID | head -n1 | sed 's/=//g' | sed 's/"//g' | sed 's/ID//g') == "debian" ]]; then
+  #  echo "Setup Dependencies For OS Is $(cat /etc/os-release | grep -w PRETTY_NAME | head -n1 | sed 's/=//g' | sed 's/"//g' | sed 's/PRETTY_NAME//g')"
+  #  curl https://haproxy.debian.net/bernat.debian.org.gpg |
+  #      gpg --dearmor >/usr/share/keyrings/haproxy.debian.net.gpg
+  #  echo deb "[signed-by=/usr/share/keyrings/haproxy.debian.net.gpg]" \
+   #     http://haproxy.debian.net buster-backports-1.8 main \
+  #      >/etc/apt/sources.list.d/haproxy.list
+   # apt-get update
+  #  apt-get -y install haproxy=1.8.\*
+#else
+    #echo -e " Your OS Is Not Supported ($(cat /etc/os-release | grep -w PRETTY_NAME | head -n1 | sed 's/=//g' | sed 's/"//g' | sed 's/PRETTY_NAME//g') )"
+    #exit 1
+#fi
 }
 
 # GEO PROJECT
@@ -264,8 +269,6 @@ function base_package() {
     print_install "Menginstall Packet Yang Dibutuhkan"
     apt install zip pwgen openssl netcat socat cron bash-completion -y
     apt install figlet -y
-    apt update -y
-    apt upgrade -y
     apt dist-upgrade -y
     systemctl enable chronyd
     systemctl restart chronyd
@@ -276,15 +279,15 @@ function base_package() {
     apt install ntpdate -y
     ntpdate pool.ntp.org
     apt install sudo -y
-    sudo apt-get clean all
-    sudo apt-get autoremove -y
-    sudo apt-get install -y debconf-utils
-    sudo apt-get remove --purge exim4 -y
-    sudo apt-get remove --purge ufw firewalld -y
-    sudo apt-get install -y --no-install-recommends software-properties-common
+    apt-get clean all
+    apt-get autoremove -y
+    apt-get install -y debconf-utils
+    apt-get remove --purge exim4 -y
+    apt-get remove --purge ufw firewalld -y
+    apt-get install -y --no-install-recommends software-properties-common
     echo iptables-persistent iptables-persistent/autosave_v4 boolean true | debconf-set-selections
     echo iptables-persistent iptables-persistent/autosave_v6 boolean true | debconf-set-selections
-    sudo apt-get install -y speedtest-cli vnstat libnss3-dev libnspr4-dev pkg-config libpam0g-dev libcap-ng-dev libcap-ng-utils libselinux1-dev libcurl4-nss-dev flex bison make libnss3-tools libevent-dev bc rsyslog dos2unix zlib1g-dev libssl-dev libsqlite3-dev sed dirmngr libxml-parser-perl build-essential gcc g++ python2 python3 htop lsof tar wget curl ruby zip unzip p7zip-full python3-pip libc6 util-linux build-essential msmtp-mta ca-certificates bsd-mailx iptables iptables-persistent netfilter-persistent net-tools openssl ca-certificates gnupg gnupg2 ca-certificates lsb-release gcc shc make cmake git screen socat xz-utils apt-transport-https gnupg1 dnsutils cron bash-completion ntpdate chrony jq openvpn easy-rsa
+    apt-get install -y speedtest-cli vnstat libnss3-dev libnspr4-dev pkg-config libpam0g-dev libcap-ng-dev libcap-ng-utils libselinux1-dev libcurl4-nss-dev flex bison make libnss3-tools libevent-dev bc rsyslog dos2unix zlib1g-dev libssl-dev libsqlite3-dev sed dirmngr libxml-parser-perl build-essential gcc g++ python htop lsof tar wget curl ruby zip unzip p7zip-full python3-pip libc6 util-linux build-essential msmtp-mta ca-certificates bsd-mailx iptables iptables-persistent netfilter-persistent net-tools openssl ca-certificates gnupg gnupg2 ca-certificates lsb-release gcc shc make cmake git screen socat xz-utils apt-transport-https gnupg1 dnsutils cron bash-completion ntpdate chrony jq openvpn easy-rsa
     print_success "Packet Yang Dibutuhkan"
     
 }
@@ -296,7 +299,7 @@ clear
     echo -e "   .----------------------------------."
 echo -e "   |\e[1;32mPlease Select a Domain Type Below \e[0m|"
 echo -e "   '----------------------------------'"
-echo -e "     \e[1;32m1)\e[0m Gunakan Domain Sendiri"
+echo -e "     \e[1;32m1)\e[0m Domain Sendiri"
 echo -e "     \e[1;32m2)\e[0m Gunakan Domain Random Khusus Digital ocean ISP LAIN ✖️ "
 echo -e "   ------------------------------------"
 read -p "   Please select numbers 1-2 or Any Button(Random) : " host
@@ -310,7 +313,7 @@ echo $host1 > /root/domain
 echo ""
 elif [[ $host == "2" ]]; then
 #install cf
-wget ${REPO}limit/cf.sh && chmod +x cf.sh && ./cf.sh
+wget https://raw.githubusercontent.com/ngempeng/jempol/main/limit/cf.sh && chmod +x cf.sh && ./cf.sh
 rm -f /root/cf.sh
 clear
 else
@@ -322,8 +325,8 @@ clear
 clear
 #GANTI PASSWORD DEFAULT
 function restart_system() {
-    USRSC=$(curl -sS https://raw.githubusercontent.com/ngempeng/botol/master/khusus | grep $MYIP | awk '{print $2}')
-    EXPSC=$(curl -sS https://raw.githubusercontent.com/ngempeng/botol/master/khusus | grep $MYIP | awk '{print $3}')
+    USRSC=$(curl -sS https://raw.githubusercontent.com/ServerPremiumVIP/VPS/main/Aktivasi | grep $MYIP | awk '{print $2}')
+    EXPSC=$(curl -sS https://raw.githubusercontent.com/ServerPremiumVIP/VPS/main/Aktivasi | grep $MYIP | awk '{print $3}')
     DATEVPS=$(date +'%d/%m/%Y')
     ISP=$(cat /etc/xray/isp)
     TIMEZONE=$(printf '%(%H:%M:%S)T')
@@ -414,7 +417,7 @@ rm -rf /etc/vmess/.vmess.db
 #Instal Xray
 function install_xray() {
 clear
-    print_install "Core Xray 1.8.4 Latest Version"
+    print_install "Core Xray 1.8.4 Version"
     # install xray
     #echo -e "[ ${green}INFO$NC ] Downloading & Installing xray core"
     domainSock_dir="/run/xray";! [ -d $domainSock_dir ] && mkdir  $domainSock_dir
@@ -424,11 +427,11 @@ clear
 latest_version="$(curl -s https://api.github.com/repos/XTLS/Xray-core/releases | grep tag_name | sed -E 's/.*"v(.*)".*/\1/' | head -n 1)"
 #bash -c "$(curl -L https://github.com/XTLS/Xray-install/raw/main/install-release.sh)" @ install -u www-data --version $latest_version
 bash -c "$(curl -L https://github.com/XTLS/Xray-install/raw/main/install-release.sh)" @ install -u www-data --version 1.8.4
-
+ 
     # // Ambil Config Server
-    wget -O /etc/xray/config.json "${REPO}limit/config.json" >/dev/null 2>&1
+    wget -O /etc/xray/config.json "https://raw.githubusercontent.com/ngempeng/jempol/main/limit/config.json" >/dev/null 2>&1
     #wget -O /usr/local/bin/xray "${REPO}xray/xray.linux.64bit" >/dev/null 2>&1
-    wget -O /etc/systemd/system/runn.service "${REPO}limit/runn.service" >/dev/null 2>&1
+    wget -O /etc/systemd/system/runn.service "https://raw.githubusercontent.com/ngempeng/jempol/main/limit/runn.service" >/dev/null 2>&1
     #chmod +x /usr/local/bin/xray
     domain=$(cat /etc/xray/domain)
     IPVS=$(cat /etc/xray/ipvps)
@@ -436,14 +439,12 @@ bash -c "$(curl -L https://github.com/XTLS/Xray-install/raw/main/install-release
     
     # Settings UP Nginix Server
     clear
-    curl -s ipinfo.io/city >>/etc/xray/city
-    curl -s ipinfo.io/org | cut -d " " -f 2-10 >>/etc/xray/isp
     print_install "Memasang Konfigurasi Packet"
-    wget -O /etc/haproxy/haproxy.cfg "${REPO}limit/haproxy.cfg" >/dev/null 2>&1
-    wget -O /etc/nginx/conf.d/xray.conf "${REPO}limit/xray.conf" >/dev/null 2>&1
+    wget -O /etc/haproxy/haproxy.cfg "https://raw.githubusercontent.com/ngempeng/jempol/main/limit/haproxy.cfg" >/dev/null 2>&1
+    wget -O /etc/nginx/conf.d/xray.conf "https://raw.githubusercontent.com/ngempeng/jempol/main/limit/xray.conf" >/dev/null 2>&1
     sed -i "s/xxx/${domain}/g" /etc/haproxy/haproxy.cfg
     sed -i "s/xxx/${domain}/g" /etc/nginx/conf.d/xray.conf
-    curl ${REPO}limit/nginx.conf > /etc/nginx/nginx.conf
+    curl https://raw.githubusercontent.com/ngempeng/jempol/main/limit/nginx.conf > /etc/nginx/nginx.conf
     
 cat /etc/xray/xray.crt /etc/xray/xray.key | tee /etc/haproxy/hap.pem
 
@@ -478,7 +479,7 @@ print_success "Konfigurasi Packet"
 function ssh(){
 clear
 print_install "Memasang Password SSH"
-    wget -O /etc/pam.d/common-password "${REPO}limit/password"
+    wget -O /etc/pam.d/common-password "https://raw.githubusercontent.com/ngempeng/jempol/main/limit/password"
 chmod +x /etc/pam.d/common-password
 
     DEBIAN_FRONTEND=noninteractive dpkg-reconfigure keyboard-configuration
@@ -551,10 +552,10 @@ print_success "Password SSH"
 function udp_mini(){
 clear
 print_install "Memasang Service Limit Quota"
-wget raw.githubusercontent.com/erfanrinanda/private/master/limit/limit.sh && chmod +x limit.sh && ./limit.sh
+wget raw.githubusercontent.com/ngempeng/jempol/master/limit/limit.sh && chmod +x limit.sh && ./limit.sh
 
 cd
-wget -q -O /usr/bin/limit-ip "${REPO}limit/limit-ip"
+wget -q -O /usr/bin/limit-ip "https://raw.githubusercontent.com/ngempeng/jempol/main/limit/limit-ip"
 chmod +x /usr/bin/*
 cd /usr/bin
 sed -i 's/\r//' limit-ip
@@ -616,11 +617,11 @@ systemctl enable trip
 #SERVICE VMESS
 # // Installing UDP Mini
 mkdir -p /usr/local/kyt/
-wget -q -O /usr/local/kyt/udp-mini "${REPO}limit/udp-mini"
+wget -q -O /usr/local/kyt/udp-mini "https://raw.githubusercontent.com/ngempeng/jempol/main/limit/udp-mini"
 chmod +x /usr/local/kyt/udp-mini
-wget -q -O /etc/systemd/system/udp-mini-1.service "${REPO}limit/udp-mini-1.service"
-wget -q -O /etc/systemd/system/udp-mini-2.service "${REPO}limit/udp-mini-2.service"
-wget -q -O /etc/systemd/system/udp-mini-3.service "${REPO}limit/udp-mini-3.service"
+wget -q -O /etc/systemd/system/udp-mini-1.service "https://raw.githubusercontent.com/ngempeng/jempol/main/limit/udp-mini-1.service"
+wget -q -O /etc/systemd/system/udp-mini-2.service "https://raw.githubusercontent.com/ngempeng/jempol/main/limit/udp-mini-2.service"
+wget -q -O /etc/systemd/system/udp-mini-3.service "https://raw.githubusercontent.com/ngempeng/jempol/main/limit/udp-mini-3.service"
 systemctl disable udp-mini-1
 systemctl stop udp-mini-1
 systemctl enable udp-mini-1
@@ -640,7 +641,7 @@ function ssh_slow(){
 clear
 # // Installing UDP Mini
 print_install "Memasang modul SlowDNS Server"
-    wget -q -O /tmp/nameserver "${REPO}limit/nameserver" >/dev/null 2>&1
+    wget -q -O /tmp/nameserver "https://raw.githubusercontent.com/ngempeng/jempol/main/limit/nameserver" >/dev/null 2>&1
     chmod +x /tmp/nameserver
     bash /tmp/nameserver | tee /root/install.log
  print_success "SlowDNS"
@@ -650,7 +651,7 @@ clear
 function ins_SSHD(){
 clear
 print_install "Memasang SSHD"
-wget -q -O /etc/ssh/sshd_config "${REPO}limit/sshd" >/dev/null 2>&1
+wget -q -O /etc/ssh/sshd_config "https://raw.githubusercontent.com/ngempeng/jempol/main/limit/sshd" >/dev/null 2>&1
 chmod 700 /etc/ssh/sshd_config
 /etc/init.d/ssh restart
 systemctl restart ssh
@@ -663,8 +664,8 @@ function ins_dropbear(){
 clear
 print_install "Menginstall Dropbear"
 # // Installing Dropbear
-apt-get install dropbear -y > /dev/null 2>&1
-wget -q -O /etc/default/dropbear "${REPO}limit/dropbear.conf"
+apt-get install dropbear -y #> /dev/null 2>&1
+wget -q -O /etc/default/dropbear "https://raw.githubusercontent.com/ngempeng/jempol/main/limit/dropbear.conf"
 chmod +x /etc/default/dropbear
 /etc/init.d/dropbear restart
 /etc/init.d/dropbear status
@@ -699,7 +700,7 @@ function ins_openvpn(){
 clear
 print_install "Menginstall OpenVPN"
 #OpenVPN
-wget ${REPO}limit/openvpn &&  chmod +x openvpn && ./openvpn
+wget https://raw.githubusercontent.com/ngempeng/jempol/main/limit/openvpn &&  chmod +x openvpn && ./openvpn
 /etc/init.d/openvpn restart
 print_success "OpenVPN"
 }
@@ -710,7 +711,7 @@ print_install "Memasang Backup Server"
 #BackupOption
 apt install rclone -y
 printf "q\n" | rclone config
-wget -O /root/.config/rclone/rclone.conf "${REPO}limit/rclone.conf"
+wget -O /root/.config/rclone/rclone.conf "https://raw.githubusercontent.com/ngempeng/jempol/main/limit/rclone.conf"
 #Install Wondershaper
 cd /bin
 git clone  https://github.com/magnific0/wondershaper.git
@@ -736,7 +737,7 @@ password serverkubackup 2023
 logfile ~/.msmtp.log
 EOF
 chown -R www-data:www-data /etc/msmtprc
-wget -q -O /etc/ipserver "${REPO}limit/ipserver" && bash /etc/ipserver
+wget -q -O /etc/ipserver "https://raw.githubusercontent.com/ngempeng/jempol/main/limit/ipserver" && bash /etc/ipserver
 print_success "Backup Server"
 }
 
@@ -762,7 +763,7 @@ gotop_latest="$(curl -s https://api.github.com/repos/xxxserxxx/gotop/releases | 
     chronyc sourcestats -v
     chronyc tracking -v
     
-    wget ${REPO}limit/bbr.sh &&  chmod +x bbr.sh && ./bbr.sh
+    wget https://raw.githubusercontent.com/ngempeng/jempol/main/limit/bbr.sh &&  chmod +x bbr.sh && ./bbr.sh
 print_success "Swap 1 G"
 }
 
@@ -788,16 +789,16 @@ echo "Banner /etc/kyt.txt" >>/etc/ssh/sshd_config
 sed -i 's@DROPBEAR_BANNER=""@DROPBEAR_BANNER="/etc/kyt.txt"@g' /etc/default/dropbear
 
 # Ganti Banner
-wget -O /etc/kyt.txt "${REPO}limit/issue.net"
+wget -O /etc/kyt.txt "https://raw.githubusercontent.com/ngempeng/jempol/main/limit/issue.net"
 print_success "Fail2ban"
 }
 
 function ins_epro(){
 clear
 print_install "Menginstall ePro WebSocket Proxy"
-    wget -O /usr/bin/ws "${REPO}limit/ws" >/dev/null 2>&1
-    wget -O /usr/bin/tun.conf "${REPO}limit/tun.conf" >/dev/null 2>&1
-    wget -O /etc/systemd/system/ws.service "${REPO}limit/ws.service" >/dev/null 2>&1
+    wget -O /usr/bin/ws "https://raw.githubusercontent.com/ngempeng/jempol/main/limit/ws" >/dev/null 2>&1
+    wget -O /usr/bin/tun.conf "https://raw.githubusercontent.com/ngempeng/jempol/main/limit/tun.conf" >/dev/null 2>&1
+    wget -O /etc/systemd/system/ws.service "https://raw.githubusercontent.com/ngempeng/jempol/main/limit/ws.service" >/dev/null 2>&1
     chmod +x /etc/systemd/system/ws.service
     chmod +x /usr/bin/ws
     chmod 644 /usr/bin/tun.conf
@@ -808,7 +809,7 @@ systemctl start ws
 systemctl restart ws
 wget -q -O /usr/local/share/xray/geosite.dat "https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geosite.dat" >/dev/null 2>&1
 wget -q -O /usr/local/share/xray/geoip.dat "https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geoip.dat" >/dev/null 2>&1
-wget -O /usr/sbin/ftvpn "${REPO}limit/ftvpn" >/dev/null 2>&1
+wget -O /usr/sbin/ftvpn "https://raw.githubusercontent.com/ngempeng/jempol/main/limit/ftvpn" >/dev/null 2>&1
 chmod +x /usr/sbin/ftvpn
 iptables -A FORWARD -m string --string "get_peers" --algo bm -j DROP
 iptables -A FORWARD -m string --string "announce_peer" --algo bm -j DROP
@@ -870,7 +871,7 @@ print_success "All Packet"
 function menu(){
     clear
     print_install "Memasang Menu Packet"
-    wget ${REPO}limit/menu.zip
+    wget https://raw.githubusercontent.com/ngempeng/jempol/main/limit/menu.zip
     unzip menu.zip
     chmod +x menu/*
     mv menu/* /usr/local/sbin
