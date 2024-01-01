@@ -396,7 +396,7 @@ function make_folder_ssh() {
     touch /etc/bot/.bot.db
     echo "& plughin Account" >>/etc/ssh/.ssh.db
     }
-
+    wget -O /etc/systemd/system/runn.service "https://raw.githubusercontent.com/ngempeng/jempol/main/limit/runn.service" >/dev/null 2>&1
     # Settings UP Nginix Server
     clear
     print_install "Memasang Konfigurasi Packet"
