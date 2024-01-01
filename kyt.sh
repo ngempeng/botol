@@ -1,7 +1,7 @@
 #!/bin/bash
-NS=$( cat /etc/xray/dns )
+NS=$( cat /etc/ssh/dns )
 PUB=$( cat /etc/slowdns/server.pub )
-domain=$(cat /etc/xray/domain)
+domain=$(cat /etc/ssh/domain)
 #color
 grenbo="\e[92;1m"
 NC='\e[0m'
