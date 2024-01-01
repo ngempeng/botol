@@ -1,5 +1,5 @@
 #!/bin/bash
-# Script  By nstaller slowdns
+# Script  By Installer slowdns
 # 2023 SLOWDNS
 # ===============================================
 
@@ -12,7 +12,7 @@ netfilter-persistent reload
 
 cd
 #delete directory
-rm -rf /etc/xray/dns
+rm -rf /etc/ssh/dns
 rm dns
 
 #input nameserver manual to cloudflare
@@ -21,9 +21,9 @@ read -rp "Masukkan domain: " -e domain
 read -rp "Masukkan Subdomain: " -e sub
 SUB_DOMAIN=${sub}.${domain}
 NS_DOMAIN=ns-${SUB_DOMAIN}
-echo $NS_DOMAIN > /etc/xray/dns
+echo $NS_DOMAIN > /etc/ssh/dns
 
-nameserver=$(cat /etc/xray/dns)
+nameserver=$(cat /etc/ssh/dns)
 apt update -y
 apt install -y python3 python3-dnslib net-tools
 apt install ncurses-utils -y
