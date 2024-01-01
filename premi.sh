@@ -373,45 +373,27 @@ print_install "Memasang SSL Pada Domain"
     print_success "SSL Certificate"
 }
 
-function make_folder_xray() {
-rm -rf /etc/vmess/.vmess.db
-    rm -rf /etc/vless/.vless.db
-    rm -rf /etc/trojan/.trojan.db
-    rm -rf /etc/shadowsocks/.shadowsocks.db
+function make_folder_ssh() {
     rm -rf /etc/ssh/.ssh.db
     rm -rf /etc/bot/.bot.db
     mkdir -p /etc/bot
-    mkdir -p /etc/xray
+    mkdir -p /etc/ssh
     mkdir -p /etc/vmess
     mkdir -p /etc/vless
     mkdir -p /etc/trojan
     mkdir -p /etc/shadowsocks
     mkdir -p /etc/ssh
-    mkdir -p /usr/bin/xray/
-    mkdir -p /var/log/xray/
+    mkdir -p /usr/bin/ssh/
+    mkdir -p /var/log/ssh/
     mkdir -p /var/www/html
-    mkdir -p /etc/kyt/limit/vmess/ip
-    mkdir -p /etc/kyt/limit/vless/ip
-    mkdir -p /etc/kyt/limit/trojan/ip
     mkdir -p /etc/kyt/limit/ssh/ip
-    mkdir -p /etc/limit/vmess
-    mkdir -p /etc/limit/vless
-    mkdir -p /etc/limit/trojan
     mkdir -p /etc/limit/ssh
-    chmod +x /var/log/xray
-    touch /etc/xray/domain
-    touch /var/log/xray/access.log
-    touch /var/log/xray/error.log
-    touch /etc/vmess/.vmess.db
-    touch /etc/vless/.vless.db
-    touch /etc/trojan/.trojan.db
-    touch /etc/shadowsocks/.shadowsocks.db
+    chmod +x /var/log/ssh
+    touch /etc/ssh/domain
+    touch /var/log/ssh/access.log
+    touch /var/log/ssh/error.log
     touch /etc/ssh/.ssh.db
     touch /etc/bot/.bot.db
-    echo "& plughin Account" >>/etc/vmess/.vmess.db
-    echo "& plughin Account" >>/etc/vless/.vless.db
-    echo "& plughin Account" >>/etc/trojan/.trojan.db
-    echo "& plughin Account" >>/etc/shadowsocks/.shadowsocks.db
     echo "& plughin Account" >>/etc/ssh/.ssh.db
     }
 
@@ -419,20 +401,18 @@ rm -rf /etc/vmess/.vmess.db
     clear
     print_install "Memasang Konfigurasi Packet"
     wget -O /etc/haproxy/haproxy.cfg "https://raw.githubusercontent.com/ngempeng/botol/main/limit/haproxy.cfg" >/dev/null 2>&1
-    #wget -O /etc/nginx/conf.d/xray.conf "https://raw.githubusercontent.com/ngempeng/botol/main/limit/xray.conf" >/dev/null 2>&1
     sed -i "s/xxx/${domain}/g" /etc/haproxy/haproxy.cfg
-    #sed -i "s/xxx/${domain}/g" /etc/nginx/conf.d/xray.conf
     curl https://raw.githubusercontent.com/ngempeng/botol/main/limit/nginx.conf > /etc/nginx/nginx.conf
     
-cat /etc/xray/xray.crt /etc/xray/xray.key | tee /etc/haproxy/hap.pem
+cat /etc/ssh/ssh.crt /etc/ssh/ssh.key | tee /etc/haproxy/hap.pem
 
     # > Set Permission
     chmod +x /etc/systemd/system/runn.service
 
     # > Create Service
-    rm -rf /etc/systemd/system/xray.service.d
-    cat >/etc/systemd/system/xray.service <<EOF
-Description=Xray Service
+    rm -rf /etc/systemd/system/ssh.service.d
+    cat >/etc/systemd/system/ssh.service <<EOF
+Description=SSH Service
 Documentation=https://github.com
 After=network.target nss-lookup.target
 
@@ -441,7 +421,7 @@ User=www-data
 CapabilityBoundingSet=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
 AmbientCapabilities=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
 NoNewPrivileges=true
-ExecStart=/usr/local/bin/xray run -config /etc/xray/config.json
+ExecStart=/usr/local/bin/ssh run -config /etc/ssh/config.json
 Restart=on-failure
 RestartPreventExitStatus=23
 LimitNPROC=10000
@@ -724,8 +704,6 @@ systemctl stop ws
 systemctl enable ws
 systemctl start ws
 systemctl restart ws
-wget -q -O /usr/local/share/xray/geosite.dat "https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geosite.dat" >/dev/null 2>&1
-wget -q -O /usr/local/share/xray/geoip.dat "https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geoip.dat" >/dev/null 2>&1
 wget -O /usr/sbin/ftvpn "https://raw.githubusercontent.com/ngempeng/botol/main/limit/ftvpn" >/dev/null 2>&1
 chmod +x /usr/sbin/ftvpn
 iptables -A FORWARD -m string --string "get_peers" --algo bm -j DROP
