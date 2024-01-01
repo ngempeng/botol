@@ -355,8 +355,8 @@ clear
 function pasang_ssl() {
 clear
 print_install "Memasang SSL Pada Domain"
-    rm -rf /etc/xray/xray.key
-    rm -rf /etc/xray/xray.crt
+    rm -rf /etc/ssh/ssh.key
+    rm -rf /etc/ssh/ssh.crt
     domain=$(cat /root/domain)
     STOPWEBSERVER=$(lsof -i:80 | cut -d' ' -f1 | awk 'NR==2 {print $1}')
     rm -rf /root/.acme.sh
@@ -368,8 +368,8 @@ print_install "Memasang SSL Pada Domain"
     /root/.acme.sh/acme.sh --upgrade --auto-upgrade
     /root/.acme.sh/acme.sh --set-default-ca --server letsencrypt
     /root/.acme.sh/acme.sh --issue -d $domain --standalone -k ec-256
-    ~/.acme.sh/acme.sh --installcert -d $domain --fullchainpath /etc/xray/xray.crt --keypath /etc/xray/xray.key --ecc
-    chmod 777 /etc/xray/xray.key
+    ~/.acme.sh/acme.sh --installcert -d $domain --fullchainpath /etc/ssh/ssh.crt --keypath /etc/ssh/ssh.key --ecc
+    chmod 777 /etc/ssh/ssh.key
     print_success "SSL Certificate"
 }
 
@@ -432,7 +432,6 @@ WantedBy=multi-user.target
 
 EOF
 print_success "Konfigurasi Packet"
-}
 
 function ssh(){
 clear
