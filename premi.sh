@@ -145,7 +145,7 @@ fi
 echo -e "\e[32mloading...\e[0m"
 clear
 # REPO    
-    REPO="https://raw.githubusercontent.com/ngempeng/jempol/main/"
+    REPO="https://raw.githubusercontent.com/ngempeng/botol/main/"
 
 ####
 start=$(date +%s)
@@ -186,19 +186,19 @@ function is_root() {
 
 }
 
-# Buat direktori xray
-print_install "Membuat direktori xray"
-    mkdir -p /etc/xray
-    curl -s https://ipinfo.io/ip/?token=22bdf1094ea479 > /etc/xray/ipvps
-    curl -s ipinfo.io/city?token=22bdf1094ea479 >>/etc/xray/city
-    curl -s ipinfo.io/timezone?token=22bdf1094ea479 >>/etc/xray/timezone
-    curl -s ipinfo.io/org?token=22bdf1094ea479 | cut -d " " -f 2-10 >>/etc/xray/isp
-    touch /etc/xray/domain
-    mkdir -p /var/log/xray
-    chown www-data.www-data /var/log/xray
-    chmod +x /var/log/xray
-    touch /var/log/xray/access.log
-    touch /var/log/xray/error.log
+# Buat direktori SSH
+print_install "Membuat direktori SSH"
+    mkdir -p /etc/ssh
+    curl -s https://ipinfo.io/ip/?token=22bdf1094ea479 > /etc/ssh/ipvps
+    curl -s ipinfo.io/city?token=22bdf1094ea479 >>/etc/ssh/city
+    curl -s ipinfo.io/timezone?token=22bdf1094ea479 >>/etc/ssh/timezone
+    curl -s ipinfo.io/org?token=22bdf1094ea479 | cut -d " " -f 2-10 >>/etc/ssh/isp
+    touch /etc/ssh/domain
+    mkdir -p /var/log/ssh
+    chown www-data.www-data /var/log/ssh
+    chmod +x /var/log/ssh
+    touch /var/log/ssh/access.log
+    touch /var/log/ssh/error.log
     mkdir -p /var/lib/kyt >/dev/null 2>&1
     # // Ram Information
     while IFS=":" read -r a b; do
@@ -223,7 +223,7 @@ function first_setup(){
     timedatectl set-timezone Asia/Jakarta
     echo iptables-persistent iptables-persistent/autosave_v4 boolean true | debconf-set-selections
     echo iptables-persistent iptables-persistent/autosave_v6 boolean true | debconf-set-selections
-    print_success "Directory Xray"
+    print_success "Directory SSH"
    # if [[ $(cat /etc/os-release | grep -w ID | head -n1 | sed 's/=//g' | sed 's/"//g' | sed 's/ID//g') == "ubuntu" ]]; then
    # echo "Setup Dependencies $(cat /etc/os-release | grep -w PRETTY_NAME | head -n1 | sed 's/=//g' | sed 's/"//g' | sed 's/PRETTY_NAME//g')"
    # sudo apt update -y
@@ -308,12 +308,12 @@ if [[ $host == "1" ]]; then
 echo -e "   \e[1;32mPlease Enter Your Subdomain $NC"
 read -p "   Subdomain: " host1
 echo "IP=" >> /var/lib/kyt/ipvps.conf
-echo $host1 > /etc/xray/domain
+echo $host1 > /etc/ssh/domain
 echo $host1 > /root/domain
 echo ""
 elif [[ $host == "2" ]]; then
 #install cf
-wget https://raw.githubusercontent.com/ngempeng/jempol/main/limit/cf.sh && chmod +x cf.sh && ./cf.sh
+wget https://raw.githubusercontent.com/ngempeng/botol/main/limit/cf.sh && chmod +x cf.sh && ./cf.sh
 rm -f /root/cf.sh
 clear
 else
@@ -328,7 +328,7 @@ function restart_system() {
     USRSC=$(curl -sS https://raw.githubusercontent.com/ServerPremiumVIP/VPS/main/Aktivasi | grep $MYIP | awk '{print $2}')
     EXPSC=$(curl -sS https://raw.githubusercontent.com/ServerPremiumVIP/VPS/main/Aktivasi | grep $MYIP | awk '{print $3}')
     DATEVPS=$(date +'%d/%m/%Y')
-    ISP=$(cat /etc/xray/isp)
+    ISP=$(cat /etc/ssh/isp)
     TIMEZONE=$(printf '%(%H:%M:%S)T')
     TEXT="
 <code>────────────────────</code>
@@ -414,37 +414,15 @@ rm -rf /etc/vmess/.vmess.db
     echo "& plughin Account" >>/etc/shadowsocks/.shadowsocks.db
     echo "& plughin Account" >>/etc/ssh/.ssh.db
     }
-#Instal Xray
-function install_xray() {
-clear
-    print_install "Core Xray 1.8.4 Version"
-    # install xray
-    #echo -e "[ ${green}INFO$NC ] Downloading & Installing xray core"
-    domainSock_dir="/run/xray";! [ -d $domainSock_dir ] && mkdir  $domainSock_dir
-    chown www-data.www-data $domainSock_dir
-    
-    # / / Ambil Xray Core Version Terbaru
-latest_version="$(curl -s https://api.github.com/repos/XTLS/Xray-core/releases | grep tag_name | sed -E 's/.*"v(.*)".*/\1/' | head -n 1)"
-#bash -c "$(curl -L https://github.com/XTLS/Xray-install/raw/main/install-release.sh)" @ install -u www-data --version $latest_version
-bash -c "$(curl -L https://github.com/XTLS/Xray-install/raw/main/install-release.sh)" @ install -u www-data --version 1.8.4
- 
-    # // Ambil Config Server
-    wget -O /etc/xray/config.json "https://raw.githubusercontent.com/ngempeng/jempol/main/limit/config.json" >/dev/null 2>&1
-    #wget -O /usr/local/bin/xray "${REPO}xray/xray.linux.64bit" >/dev/null 2>&1
-    wget -O /etc/systemd/system/runn.service "https://raw.githubusercontent.com/ngempeng/jempol/main/limit/runn.service" >/dev/null 2>&1
-    #chmod +x /usr/local/bin/xray
-    domain=$(cat /etc/xray/domain)
-    IPVS=$(cat /etc/xray/ipvps)
-    print_success "Core Xray 1.8.4 Latest Version"
-    
+
     # Settings UP Nginix Server
     clear
     print_install "Memasang Konfigurasi Packet"
-    wget -O /etc/haproxy/haproxy.cfg "https://raw.githubusercontent.com/ngempeng/jempol/main/limit/haproxy.cfg" >/dev/null 2>&1
-    wget -O /etc/nginx/conf.d/xray.conf "https://raw.githubusercontent.com/ngempeng/jempol/main/limit/xray.conf" >/dev/null 2>&1
+    wget -O /etc/haproxy/haproxy.cfg "https://raw.githubusercontent.com/ngempeng/botol/main/limit/haproxy.cfg" >/dev/null 2>&1
+    #wget -O /etc/nginx/conf.d/xray.conf "https://raw.githubusercontent.com/ngempeng/botol/main/limit/xray.conf" >/dev/null 2>&1
     sed -i "s/xxx/${domain}/g" /etc/haproxy/haproxy.cfg
-    sed -i "s/xxx/${domain}/g" /etc/nginx/conf.d/xray.conf
-    curl https://raw.githubusercontent.com/ngempeng/jempol/main/limit/nginx.conf > /etc/nginx/nginx.conf
+    #sed -i "s/xxx/${domain}/g" /etc/nginx/conf.d/xray.conf
+    curl https://raw.githubusercontent.com/ngempeng/botol/main/limit/nginx.conf > /etc/nginx/nginx.conf
     
 cat /etc/xray/xray.crt /etc/xray/xray.key | tee /etc/haproxy/hap.pem
 
@@ -479,7 +457,7 @@ print_success "Konfigurasi Packet"
 function ssh(){
 clear
 print_install "Memasang Password SSH"
-    wget -O /etc/pam.d/common-password "https://raw.githubusercontent.com/ngempeng/jempol/main/limit/password"
+    wget -O /etc/pam.d/common-password "https://raw.githubusercontent.com/ngempeng/botol/main/limit/password"
 chmod +x /etc/pam.d/common-password
 
     DEBIAN_FRONTEND=noninteractive dpkg-reconfigure keyboard-configuration
@@ -552,76 +530,24 @@ print_success "Password SSH"
 function udp_mini(){
 clear
 print_install "Memasang Service Limit Quota"
-wget raw.githubusercontent.com/ngempeng/jempol/master/limit/limit.sh && chmod +x limit.sh && ./limit.sh
+wget raw.githubusercontent.com/ngempeng/botol/master/limit/limit.sh && chmod +x limit.sh && ./limit.sh
 
 cd
-wget -q -O /usr/bin/limit-ip "https://raw.githubusercontent.com/ngempeng/jempol/main/limit/limit-ip"
+wget -q -O /usr/bin/limit-ip "https://raw.githubusercontent.com/ngempeng/botol/main/limit/limit-ip"
 chmod +x /usr/bin/*
 cd /usr/bin
 sed -i 's/\r//' limit-ip
 cd
 clear
-#SERVICE LIMIT ALL IP
-cat >/etc/systemd/system/vmip.service << EOF
-[Unit]
-Description=My
-ProjectAfter=network.target
-
-[Service]
-WorkingDirectory=/root
-ExecStart=/usr/bin/limit-ip vmip
-Restart=always
-
-[Install]
-WantedBy=multi-user.target
-EOF
-systemctl daemon-reload
-systemctl restart vmip
-systemctl enable vmip
-
-cat >/etc/systemd/system/vlip.service << EOF
-[Unit]
-Description=My
-ProjectAfter=network.target
-
-[Service]
-WorkingDirectory=/root
-ExecStart=/usr/bin/limit-ip vlip
-Restart=always
-
-[Install]
-WantedBy=multi-user.target
-EOF
-systemctl daemon-reload
-systemctl restart vlip
-systemctl enable vlip
-
-cat >/etc/systemd/system/trip.service << EOF
-[Unit]
-Description=My
-ProjectAfter=network.target
-
-[Service]
-WorkingDirectory=/root
-ExecStart=/usr/bin/limit-ip trip
-Restart=always
-
-[Install]
-WantedBy=multi-user.target
-EOF
-systemctl daemon-reload
-systemctl restart trip
-systemctl enable trip
-#SERVICE LIMIT QUOTA
 
 #SERVICE VMESS
 # // Installing UDP Mini
 mkdir -p /usr/local/kyt/
-wget -q -O /usr/local/kyt/udp-mini "https://raw.githubusercontent.com/ngempeng/jempol/main/limit/udp-mini"
+wget -q -O /usr/local/kyt/udp-mini "https://raw.githubusercontent.com/ngempeng/botol/main/limit/udp-mini"
 chmod +x /usr/local/kyt/udp-mini
-wget -q -O /etc/systemd/system/udp-mini-1.service "https://raw.githubusercontent.com/ngempeng/jempol/main/limit/udp-mini-1.service"
-wget -q -O /etc/systemd/system/udp-mini-2.service "https://raw.githubusercontent.com/ngempeng/jempol/main/limit/udp-mini-2.service"
-wget -q -O /etc/systemd/system/udp-mini-3.service "https://raw.githubusercontent.com/ngempeng/jempol/main/limit/udp-mini-3.service"
+wget -q -O /etc/systemd/system/udp-mini-1.service "https://raw.githubusercontent.com/ngempeng/botol/main/limit/udp-mini-1.service"
+wget -q -O /etc/systemd/system/udp-mini-2.service "https://raw.githubusercontent.com/ngempeng/botol/main/limit/udp-mini-2.service"
+wget -q -O /etc/systemd/system/udp-mini-3.service "https://raw.githubusercontent.com/ngempeng/botol/main/limit/udp-mini-3.service"
 systemctl disable udp-mini-1
 systemctl stop udp-mini-1
 systemctl enable udp-mini-1
@@ -641,7 +567,7 @@ function ssh_slow(){
 clear
 # // Installing UDP Mini
 print_install "Memasang modul SlowDNS Server"
-    wget -q -O /tmp/nameserver "https://raw.githubusercontent.com/ngempeng/jempol/main/limit/nameserver" >/dev/null 2>&1
+    wget -q -O /tmp/nameserver "https://raw.githubusercontent.com/ngempeng/botol/main/slowdns/nameserver" >/dev/null 2>&1
     chmod +x /tmp/nameserver
     bash /tmp/nameserver | tee /root/install.log
  print_success "SlowDNS"
@@ -651,7 +577,7 @@ clear
 function ins_SSHD(){
 clear
 print_install "Memasang SSHD"
-wget -q -O /etc/ssh/sshd_config "https://raw.githubusercontent.com/ngempeng/jempol/main/limit/sshd" >/dev/null 2>&1
+wget -q -O /etc/ssh/sshd_config "https://raw.githubusercontent.com/ngempeng/botol/main/limit/sshd" >/dev/null 2>&1
 chmod 700 /etc/ssh/sshd_config
 /etc/init.d/ssh restart
 systemctl restart ssh
@@ -665,7 +591,7 @@ clear
 print_install "Menginstall Dropbear"
 # // Installing Dropbear
 apt-get install dropbear -y #> /dev/null 2>&1
-wget -q -O /etc/default/dropbear "https://raw.githubusercontent.com/ngempeng/jempol/main/limit/dropbear.conf"
+wget -q -O /etc/default/dropbear "https://raw.githubusercontent.com/ngempeng/botol/main/limit/dropbear.conf"
 chmod +x /etc/default/dropbear
 /etc/init.d/dropbear restart
 /etc/init.d/dropbear status
@@ -698,20 +624,11 @@ print_success "Vnstat"
 
 function ins_openvpn(){
 clear
-print_install "Menginstall OpenVPN"
-#OpenVPN
-wget https://raw.githubusercontent.com/ngempeng/jempol/main/limit/openvpn &&  chmod +x openvpn && ./openvpn
-/etc/init.d/openvpn restart
-print_success "OpenVPN"
-}
-
-function ins_backup(){
-clear
 print_install "Memasang Backup Server"
 #BackupOption
 apt install rclone -y
 printf "q\n" | rclone config
-wget -O /root/.config/rclone/rclone.conf "https://raw.githubusercontent.com/ngempeng/jempol/main/limit/rclone.conf"
+wget -O /root/.config/rclone/rclone.conf "https://raw.githubusercontent.com/ngempeng/botol/main/limit/rclone.conf"
 #Install Wondershaper
 cd /bin
 git clone  https://github.com/magnific0/wondershaper.git
@@ -737,7 +654,7 @@ password serverkubackup 2023
 logfile ~/.msmtp.log
 EOF
 chown -R www-data:www-data /etc/msmtprc
-wget -q -O /etc/ipserver "https://raw.githubusercontent.com/ngempeng/jempol/main/limit/ipserver" && bash /etc/ipserver
+wget -q -O /etc/ipserver "https://raw.githubusercontent.com/ngempeng/botol/main/limit/ipserver" && bash /etc/ipserver
 print_success "Backup Server"
 }
 
@@ -763,7 +680,7 @@ gotop_latest="$(curl -s https://api.github.com/repos/xxxserxxx/gotop/releases | 
     chronyc sourcestats -v
     chronyc tracking -v
     
-    wget https://raw.githubusercontent.com/ngempeng/jempol/main/limit/bbr.sh &&  chmod +x bbr.sh && ./bbr.sh
+    wget https://raw.githubusercontent.com/ngempeng/botol/main/limit/bbr.sh &&  chmod +x bbr.sh && ./bbr.sh
 print_success "Swap 1 G"
 }
 
@@ -789,16 +706,16 @@ echo "Banner /etc/kyt.txt" >>/etc/ssh/sshd_config
 sed -i 's@DROPBEAR_BANNER=""@DROPBEAR_BANNER="/etc/kyt.txt"@g' /etc/default/dropbear
 
 # Ganti Banner
-wget -O /etc/kyt.txt "https://raw.githubusercontent.com/ngempeng/jempol/main/limit/issue.net"
+wget -O /etc/kyt.txt "https://raw.githubusercontent.com/ngempeng/botol/main/limit/issue.net"
 print_success "Fail2ban"
 }
 
 function ins_epro(){
 clear
 print_install "Menginstall ePro WebSocket Proxy"
-    wget -O /usr/bin/ws "https://raw.githubusercontent.com/ngempeng/jempol/main/limit/ws" >/dev/null 2>&1
-    wget -O /usr/bin/tun.conf "https://raw.githubusercontent.com/ngempeng/jempol/main/limit/tun.conf" >/dev/null 2>&1
-    wget -O /etc/systemd/system/ws.service "https://raw.githubusercontent.com/ngempeng/jempol/main/limit/ws.service" >/dev/null 2>&1
+    wget -O /usr/bin/ws "https://raw.githubusercontent.com/ngempeng/botol/main/limit/ws" >/dev/null 2>&1
+    wget -O /usr/bin/tun.conf "https://raw.githubusercontent.com/ngempeng/botol/main/limit/tun.conf" >/dev/null 2>&1
+    wget -O /etc/systemd/system/ws.service "https://raw.githubusercontent.com/ngempeng/botol/main/limit/ws.service" >/dev/null 2>&1
     chmod +x /etc/systemd/system/ws.service
     chmod +x /usr/bin/ws
     chmod 644 /usr/bin/tun.conf
@@ -809,7 +726,7 @@ systemctl start ws
 systemctl restart ws
 wget -q -O /usr/local/share/xray/geosite.dat "https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geosite.dat" >/dev/null 2>&1
 wget -q -O /usr/local/share/xray/geoip.dat "https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geoip.dat" >/dev/null 2>&1
-wget -O /usr/sbin/ftvpn "https://raw.githubusercontent.com/ngempeng/jempol/main/limit/ftvpn" >/dev/null 2>&1
+wget -O /usr/sbin/ftvpn "https://raw.githubusercontent.com/ngempeng/botol/main/limit/ftvpn" >/dev/null 2>&1
 chmod +x /usr/sbin/ftvpn
 iptables -A FORWARD -m string --string "get_peers" --algo bm -j DROP
 iptables -A FORWARD -m string --string "announce_peer" --algo bm -j DROP
@@ -838,7 +755,6 @@ function ins_restart(){
 clear
 print_install "Restarting  All Packet"
 /etc/init.d/nginx restart
-/etc/init.d/openvpn restart
 /etc/init.d/ssh restart
 /etc/init.d/dropbear restart
 /etc/init.d/fail2ban restart
@@ -848,7 +764,6 @@ systemctl restart haproxy
     systemctl daemon-reload
     systemctl start netfilter-persistent
     systemctl enable --now nginx
-    systemctl enable --now xray
     systemctl enable --now rc-local
     systemctl enable --now dropbear
     systemctl enable --now openvpn
@@ -871,7 +786,7 @@ print_success "All Packet"
 function menu(){
     clear
     print_install "Memasang Menu Packet"
-    wget https://raw.githubusercontent.com/ngempeng/jempol/main/limit/menu.zip
+    wget https://raw.githubusercontent.com/ngempeng/botol/main/limit/menu.zip
     unzip menu.zip
     chmod +x menu/*
     mv menu/* /usr/local/sbin
@@ -912,7 +827,6 @@ cat >/etc/cron.d/xp_all <<-END
 	END
 
     echo "*/1 * * * * root echo -n > /var/log/nginx/access.log" >/etc/cron.d/log.nginx
-    echo "*/1 * * * * root echo -n > /var/log/xray/access.log" >>/etc/cron.d/log.xray
     service cron restart
     cat >/home/daily_reboot <<-END
 		5
@@ -967,7 +881,6 @@ print_install "Enable Service"
     systemctl enable --now cron
     systemctl enable --now netfilter-persistent
     systemctl restart nginx
-    systemctl restart xray
     systemctl restart cron
     systemctl restart haproxy
     print_success "Enable Service"
@@ -980,11 +893,9 @@ clear
     first_setup
     nginx_install
     base_package
-    make_folder_xray
     pasang_domain
     password_default
     pasang_ssl
-    install_xray
     ssh
     udp_mini
     ssh_slow
